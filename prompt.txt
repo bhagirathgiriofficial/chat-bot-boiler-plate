@@ -1,0 +1,45 @@
+# Task: Create a minimal MERN AI Chatbot boilerplate (setup + UI only)
+
+## Context
+Starter repo for a YouTube tutorial for college students. I will write ALL logic live on camera. The boilerplate must be explainable to beginners in under 2 minutes.
+
+## Strict rules
+- NO business logic: no API calls, no fetch, no state handlers, no DB connection code, no schemas, no routes beyond a health check
+- NO Groq integration code: don't install the package
+- Keep it minimal: fewest files possible, no extra abstractions, no helper utils
+- JavaScript only (no TypeScript), ES modules
+
+## Structure
+/client  → React + Vite + TailwindCSS (latest, via official Vite plugin)
+/server  → Node + Express
+
+## Server (setup only)
+- Install: express, cors, dotenv, mongoose,(dev: nodemon)
+- `src/index.js`: Express app with cors, express.json(), dotenv, one route `GET /api/health → { status: "ok" }`, listen on PORT
+- Empty folders with `.gitkeep`: `src/models`, `src/routes`, `src/controllers`, `src/services`
+- `.env.example`: PORT, MONGODB_URI, GROQ_API_KEY, GROQ_MODEL
+- Script: `npm run dev` (nodemon)
+
+## Client (UI only, static)
+- Components (only these):
+  - `Sidebar.jsx`: "New Chat" button + list of chats
+  - `ChatWindow.jsx`: message list area
+  - `MessageBubble.jsx`: single message (user right-aligned, AI left-aligned)
+  - `ChatInput.jsx`: textarea + send button
+  - `App.jsx`: layout combining the above
+- Use hardcoded sample data (2–3 chats, 3–4 messages) defined at top of App.jsx and passed as props so the UI looks real
+- No useState, no event handlers; buttons and inputs are visual only
+- Styling: dark ChatGPT-like theme, Tailwind utility classes only, no custom CSS beyond Tailwind import
+- Responsive: sidebar hidden on mobile (simple `hidden md:flex`, no toggle logic)
+- `.env.example`: VITE_API_URL
+
+## Root
+- `package.json` with `npm run dev` running client + server together (concurrently)
+- `.gitignore`: node_modules, .env
+- `README.md` (short): prerequisites, install, env setup, run command, folder overview in one table
+
+## Verification
+- `npm run dev` from root starts both without errors
+- UI renders with sample data at localhost
+- `/api/health` returns ok
+- Finally, print a tree of all created files (excluding node_modules)
